@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CovidBlast</string>
+    <string name="user_name_hint">הכנס את שמך</string>
+    <string name="finish_btn">סיום</string>
+    <string name="play_btn">שחק</string>
+    <string name="scores_btn">טבלת ניקוד</string>
+    <string name="instructions_btn">הוראות</string>
+    <string name="name">שם</string>
+    <string name="score">ניקוד</string>
+    <string name="difficulty">קושי</string>
+    <string name="fire_power">עוצמת ירי</string>
+    <string name="fire_speed">מהירות ירי</string>
+    <string name="coin_value">ערך מטבע</string>
+    <string name="upgrades">שדרוגים</string>
+    <string name="not_enough_coins">אין מספיק מטבעות</string>
+</resources>

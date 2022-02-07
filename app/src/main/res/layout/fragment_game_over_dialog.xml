@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_over_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:orientation="vertical"
+    tools:context=".GameOverDialog">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/final_score_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="final_score"
+        android:textSize="35sp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_margin="15dp" />
+
+    <EditText
+        android:id="@+id/user_name_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/user_name_hint"
+        android:layout_margin="20dp"
+        android:textSize="30sp"
+        android:layout_below="@+id/final_score_tv"
+        android:textAlignment="center"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/finish_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_name_et"
+        android:layout_centerHorizontal="true"
+        android:text="@string/finish_btn"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/light_blue"
+        style="@style/Widget.Material3.Button.TonalButton" />
+
+</RelativeLayout>

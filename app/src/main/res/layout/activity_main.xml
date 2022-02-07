@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/root_container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/river_boat"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/coins_count_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:paddingEnd="5sp"
+        android:background="@color/grey"
+        android:paddingStart="5dp"
+        android:drawablePadding="5dp"
+        app:drawableStartCompat="@drawable/ic_gold_coin"
+        tools:ignore="RelativeOverlap,RtlSymmetry" />
+
+    <ImageView
+        android:id="@+id/syringe_iv"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        android:src="@drawable/syringe1"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="15dp"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

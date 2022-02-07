@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/main_cover_frag"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainCoverFragment">
+
+    <ImageButton
+        android:id="@+id/btn_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/ic_baseline_settings_24"
+        android:backgroundTint="@color/light_blue" />
+
+    <ImageButton
+        android:id="@+id/btn_backgrounds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn_settings"
+        android:src="@drawable/ic_baseline_image_24"
+        android:backgroundTint="@color/light_blue"/>
+
+    <ImageButton
+        android:id="@+id/btn_upgrades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn_backgrounds"
+        android:src="@drawable/ic_baseline_upgrade_24"
+        android:backgroundTint="@color/light_blue"/>
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="50dp"
+        android:text="Covid\nBlast"
+        android:textSize="75sp"
+        android:textStyle="bold|italic"
+        android:gravity="center"
+        android:rotation="333"/>
+
+    <Button
+        android:id="@+id/btn_play"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_tv"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/light_blue"
+        android:text="@string/play_btn"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_scores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scores_btn"
+        android:layout_below="@+id/btn_play"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/light_blue"
+        style="@style/Widget.Material3.Button.TonalButton" />
+
+    <Button
+        android:id="@+id/btn_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instructions_btn"
+        android:layout_below="@+id/btn_scores"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/light_blue"
+        style="@style/Widget.Material3.Button.TonalButton" />
+
+</RelativeLayout>

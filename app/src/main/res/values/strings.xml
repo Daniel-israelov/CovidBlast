@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">CovidBlast</string>
+    <!-- Preference Titles -->
+    <string name="messages_header" translatable="false">Messages</string>
+    <string name="sync_header" translatable="false">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title" translatable="false">Your signature</string>
+    <string name="reply_title" translatable="false">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title" translatable="false">Sync email periodically</string>
+    <string name="attachment_title" translatable="false">Download incoming attachments</string>
+    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
+    <string name="user_name_hint">Enter your name</string>
+    <string name="finish_btn">FINISH</string>
+    <string name="play_btn">Play</string>
+    <string name="scores_btn">Scoreboard</string>
+    <string name="instructions_btn">Instructions</string>
+    <string name="name">Name</string>
+    <string name="score">Score</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="fire_power">Fire power</string>
+    <string name="fire_speed">Fire speed</string>
+    <string name="coin_value">Coin value</string>
+    <string name="upgrades">UPGRADES</string>
+    <string name="not_enough_coins">Not enough coins</string>
+</resources>
