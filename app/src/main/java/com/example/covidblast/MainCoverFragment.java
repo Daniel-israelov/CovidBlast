@@ -18,10 +18,10 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
     final String BACKGROUND_FRAGMENT_TAG = "background_fragment";
     final String SCORES_FRAGMENTS_TAG = "scores_fragment";
 
-    SettingsFragment sf;
-    BackgroundFragment bgf;
-    UpgradesFragment uf;
-    ScoreboardFragment sbf;
+    SettingsFragment settingsFragment;
+    BackgroundFragment backgroundFragment;
+    UpgradesFragment upgradesFragment;
+    ScoreboardFragment scoreboardFragment;
     BtnListener btnListener;
 
     Button playBtn, scoresBtn, instructionsBtn;
@@ -29,10 +29,10 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
     FragmentTransaction transaction;
 
     MainCoverFragment(){
-        sf = new SettingsFragment();
-        uf = new UpgradesFragment();
-        bgf = new BackgroundFragment();
-        sbf = new ScoreboardFragment();
+        settingsFragment = new SettingsFragment();
+        upgradesFragment = new UpgradesFragment();
+        backgroundFragment = new BackgroundFragment();
+        scoreboardFragment = new ScoreboardFragment();
         btnListener = new BtnListener();
     }
 
@@ -51,6 +51,7 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
         backgroundBtn.setOnClickListener(this);
         settingsBtn.setOnClickListener(this);
         upgradeBtn.setOnClickListener(this);
+        view.setOnClickListener(this);
 
         playBtn.setOnClickListener(btnListener);
         scoresBtn.setOnClickListener(this);
@@ -81,16 +82,21 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
 
         switch (view.getId()){
             case R.id.btn_settings:
-                MngFrags(sf, SETTINGS_FRAGMENT_TAG);
+                manageFrags(settingsFragment, SETTINGS_FRAGMENT_TAG);
                 break;
             case R.id.btn_upgrades:
-                MngFrags(uf, UPGRADES_FRAGMENT_TAG);
+                manageFrags(upgradesFragment, UPGRADES_FRAGMENT_TAG);
                 break;
             case R.id.btn_backgrounds:
-                MngFrags(bgf, BACKGROUND_FRAGMENT_TAG);
+                manageFrags(backgroundFragment, BACKGROUND_FRAGMENT_TAG);
                 break;
             case R.id.btn_scores:
-                MngFrags(sbf, SCORES_FRAGMENTS_TAG);
+                manageFrags(scoreboardFragment, SCORES_FRAGMENTS_TAG);
+                break;
+            default:
+                transaction.hide(settingsFragment);
+                transaction.hide(upgradesFragment);
+                transaction.hide(backgroundFragment);
                 break;
         }
         transaction.commit();
@@ -100,11 +106,10 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
      * Handles the fragments in 'main_cover_frag'.
      * @param frag The fragment that's currently being used in the app.
      */
-    private void MngFrags(Fragment frag, String TAG) {
+    private void manageFrags(Fragment frag, String TAG) {
         for(Fragment f : getParentFragmentManager().getFragments())
             if(!(f instanceof MainCoverFragment))
                 transaction.hide(f);
-
 
         if (!frag.isAdded())
             transaction.add(R.id.main_cover_frag, frag, TAG);
@@ -112,4 +117,5 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
         if (!frag.isVisible())
             transaction.show(frag);
     }
+
 }
