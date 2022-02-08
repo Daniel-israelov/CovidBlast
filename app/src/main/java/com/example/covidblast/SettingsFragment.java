@@ -9,15 +9,19 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-/**
- * Created By: Daniel Israelov
- * Date: 10/01/2022
- */
+import androidx.transition.TransitionInflater;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
     ImageButton soundBtn;
     ImageButton musicBtn;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TransitionInflater inflater = TransitionInflater.from(getActivity());
+        setEnterTransition(inflater.inflateTransition(R.transition.slide_up));
+        setExitTransition(inflater.inflateTransition(R.transition.slide_up));
+    }
 
     @Nullable
     @Override

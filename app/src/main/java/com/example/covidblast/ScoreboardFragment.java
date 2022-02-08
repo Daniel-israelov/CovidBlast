@@ -5,21 +5,39 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ImageButton;
 import java.util.ArrayList;
 
-public class ScoreboardFragment extends Fragment {
+public class ScoreboardFragment extends Fragment implements View.OnClickListener{
     ArrayList<Score> scores;
     SharedPreferences sp;
+    ImageButton exitBtn;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TransitionInflater inflater = TransitionInflater.from(getActivity());
+        setEnterTransition(inflater.inflateTransition(R.transition.slide_down));
+        setExitTransition(inflater.inflateTransition(R.transition.slide_down));
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scoreboard, container, false);
 
+        exitBtn = view.findViewById(R.id.exit_btn);
+        exitBtn.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

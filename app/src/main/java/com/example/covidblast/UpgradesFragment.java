@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.transition.TransitionInflater;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,14 @@ public class UpgradesFragment extends Fragment implements View.OnClickListener{
     String speed_up = "speed_upgrade";
     String power_up = "power_upgrade";
     String coins_up = "coins_upgrade";
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TransitionInflater inflater = TransitionInflater.from(getActivity());
+        setEnterTransition(inflater.inflateTransition(R.transition.slide_left));
+        setExitTransition(inflater.inflateTransition(R.transition.slide_right));
+    }
 
     @SuppressLint({"ResourceType", "SetTextI18n"})
     @Nullable

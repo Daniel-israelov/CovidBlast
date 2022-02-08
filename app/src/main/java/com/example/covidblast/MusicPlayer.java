@@ -11,7 +11,7 @@ public class MusicPlayer {
     private static MusicPlayer instance;
     private MediaPlayer mediaPlayer;
     private boolean isMusicOn = true;
-    private boolean lastMusicMode = true; //handle music in main acitivity 'onPause' and 'onResume'
+    private boolean lastMusicMode = true; //handle music in main activity 'onPause' and 'onResume'
 
     public static MusicPlayer getInstance() {
         if (instance == null)

@@ -10,10 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.transition.TransitionInflater;
 
 public class BackgroundFragment extends Fragment implements View.OnClickListener{
     ImageButton riverBoat, darkSky, nightSnow, redSunset, retro, river, landscape, space;
     ImageButton island, cartoonSky, deepSea, desert, pyramid, hospital;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TransitionInflater inflater = TransitionInflater.from(getActivity());
+        setEnterTransition(inflater.inflateTransition(R.transition.slide_down));
+        setExitTransition(inflater.inflateTransition(R.transition.slide_down));
+    }
 
     @Nullable
     @Override
