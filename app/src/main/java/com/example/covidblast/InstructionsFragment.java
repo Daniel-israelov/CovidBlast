@@ -14,9 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.transition.TransitionInflater;
 
 public class InstructionsFragment extends Fragment {
-    ImageView syringe, hand;
-    ImageButton xBtn;
-    Animation animation;
+    ImageView syringe, hand, bloodDrop;
+    Animation animation_horizontal, animation_vertical;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,11 +32,15 @@ public class InstructionsFragment extends Fragment {
 
         syringe = view.findViewById(R.id.syringe_iv);
         hand = view.findViewById(R.id.hand_iv);
-        xBtn = view.findViewById(R.id.exit_btn);
+        bloodDrop = view.findViewById(R.id.blood_drop_iv);
 
-        animation = AnimationUtils.loadAnimation(getContext(), R.anim.drag_anim);
-        syringe.startAnimation(animation);
-        hand.startAnimation(animation);
+        animation_horizontal = AnimationUtils.loadAnimation(getContext(), R.anim.drag_anim);
+        animation_vertical = AnimationUtils.loadAnimation(getContext(), R.anim.shoot_anim);
+
+        syringe.startAnimation(animation_horizontal);
+        hand.startAnimation(animation_horizontal);
+        bloodDrop.startAnimation(animation_vertical);
+
 
         return view;
     }

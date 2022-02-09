@@ -67,16 +67,22 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
 
         switch (view.getId()){
             case R.id.btn_settings:
-                manageFrags(settingsFragment, SETTINGS_FRAGMENT_TAG);
+                if (!scoreboardFragment.isVisible())
+                    manageFrags(settingsFragment, SETTINGS_FRAGMENT_TAG);
                 break;
             case R.id.btn_upgrades:
-                manageFrags(upgradesFragment, UPGRADES_FRAGMENT_TAG);
+                if (!scoreboardFragment.isVisible())
+                    manageFrags(upgradesFragment, UPGRADES_FRAGMENT_TAG);
                 break;
             case R.id.btn_backgrounds:
-                manageFrags(backgroundFragment, BACKGROUND_FRAGMENT_TAG);
+                if (!scoreboardFragment.isVisible())
+                    manageFrags(backgroundFragment, BACKGROUND_FRAGMENT_TAG);
                 break;
             case R.id.btn_scores:
-                manageFrags(scoreboardFragment, SCORES_FRAGMENTS_TAG);
+                if (!instructionsFragment.isVisible())
+                    manageFrags(scoreboardFragment, SCORES_FRAGMENTS_TAG);
+                else
+                    transaction.hide(instructionsFragment);
                 break;
             case R.id.btn_instructions:
                 manageFrags(instructionsFragment, INSTRUCTIONS_TAG);
@@ -85,6 +91,7 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
                 transaction.hide(settingsFragment);
                 transaction.hide(upgradesFragment);
                 transaction.hide(backgroundFragment);
+                transaction.hide(instructionsFragment);
                 break;
         }
         transaction.commit();

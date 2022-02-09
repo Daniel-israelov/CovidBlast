@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_cover_frag"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -45,20 +45,34 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:rotation="340"
         android:text="Covid\nBlast"
         android:textSize="75sp"
-        android:textStyle="bold|italic"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/record_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="75dp"
         android:gravity="center"
-        android:rotation="333"/>
+        android:rotation="340"
+        android:drawablePadding="5dp"
+        android:text="*Best score*"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/crown" />
 
     <Button
         android:id="@+id/btn_play"
         style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title_tv"
+        android:layout_below="@+id/record_tv"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/light_blue"
         android:text="@string/play_btn"

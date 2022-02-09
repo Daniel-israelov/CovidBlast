@@ -14,5 +14,6 @@
     <string name="coin_value">ערך מטבע</string>
     <string name="upgrades">שדרוגים</string>
     <string name="not_enough_coins">אין מספיק מטבעות</string>
-    <string name="instruction_tv">גרור והחזק כדי לזוז ולירות</string>
+    <string name="instruction_tv">החזק וגרור כדי לזוז ולירות</string>
+    <string name="close_instructions">לחץ לסגירה</string>
 </resources>

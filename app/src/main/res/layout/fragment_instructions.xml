@@ -5,39 +5,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
     android:layout_height="400dp"
-    android:background="@drawable/river_boat"
+    android:background="@drawable/instructions_bg_rounded"
     android:layout_centerInParent="true"
     tools:context=".InstructionsFragment">
 
-    <ImageButton
-        android:id="@+id/exit_btn"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_margin="5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@null"
-        android:scaleType="centerCrop"
-        android:src="@drawable/x_button"
-        tools:ignore="ContentDescription" />
-
     <TextView
+        android:id="@+id/tap_close_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/instruction_tv"
-        android:textSize="25sp"
-        android:layout_marginTop="25dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/close_instructions"
+        android:textSize="11sp"
+        android:layout_marginBottom="5dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textAlignment="center" />
 
     <ImageView
         android:id="@+id/syringe_iv"
         android:layout_width="15dp"
         android:layout_height="115dp"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/tap_close_tv"
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
         android:src="@drawable/syringe1"
@@ -51,7 +39,27 @@
         android:scaleType="fitCenter"
         android:paddingStart="5dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/tap_close_tv"
         tools:ignore="ContentDescription,RtlSymmetry" />
+
+    <ImageView
+        android:id="@+id/blood_drop_iv"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:src="@drawable/blood_drop"
+        android:layout_above="@id/syringe_iv"
+        android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/instructions_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instruction_tv"
+        android:textSize="25sp"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textAlignment="center" />
 
 </RelativeLayout>

@@ -1,104 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/upgrades_layout"
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/btn_upgrades"
-    android:background="@drawable/rounded_frame"
-    android:layout_margin="10dp"
-    android:layout_centerVertical="true"
-    android:orientation="vertical">
+    android:layout_centerVertical="true">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/upgrades"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        style="@style/TextAppearance.Material3.HeadlineLarge"/>
-
-    <!-- FIRE SPEED -->
     <LinearLayout
-        android:id="@+id/fire_rate_layout"
+        android:id="@+id/upgrades_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:background="@drawable/rounded_frame"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="0dp"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/fire_speed"
-            android:textColor="@color/red"
-            android:layout_marginStart="15dp"
-            android:textSize="25sp" />
+            android:text="@string/upgrades"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            style="@style/TextAppearance.Material3.HeadlineLarge"/>
 
-        <Button
-            android:id="@+id/fs_btn"
-            android:layout_width="0dp"
+        <!-- FIRE SPEED -->
+        <LinearLayout
+            android:id="@+id/fire_rate_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_marginEnd="15dp"
-            android:backgroundTint="@color/red"
-            android:textColor="@color/white"
-            android:drawableEnd="@drawable/ic_baseline_attach_money_24" />
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/fire_speed"
+                android:textColor="@color/red"
+                android:layout_marginStart="15dp"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/fs_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="@color/red"
+                android:textColor="@color/white"
+                android:drawableEnd="@drawable/ic_baseline_attach_money_24" />
+        </LinearLayout>
+
+        <!-- FIRE POWER -->
+        <LinearLayout
+            android:id="@+id/fire_power_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/fire_power"
+                android:textColor="@color/light_blue"
+                android:layout_marginStart="15dp"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/fp_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="@color/light_blue"
+                android:textColor="@color/white"
+                android:drawableEnd="@drawable/ic_baseline_attach_money_24" />
+        </LinearLayout>
+
+        <!-- COINS VALUE -->
+        <LinearLayout
+            android:id="@+id/coin_value_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/coin_value"
+                android:textColor="@color/purple_700"
+                android:layout_marginStart="15dp"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/cv_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="@color/purple_700"
+                android:textColor="@color/white"
+                android:drawableEnd="@drawable/ic_baseline_attach_money_24" />
+        </LinearLayout>
+
     </LinearLayout>
 
-    <!-- FIRE POWER -->
-    <LinearLayout
-        android:id="@+id/fire_power_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/fire_power"
-            android:textColor="@color/light_blue"
-            android:layout_marginStart="15dp"
-            android:textSize="25sp" />
-
-        <Button
-            android:id="@+id/fp_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_marginEnd="15dp"
-            android:backgroundTint="@color/light_blue"
-            android:textColor="@color/white"
-            android:drawableEnd="@drawable/ic_baseline_attach_money_24" />
-    </LinearLayout>
-
-    <!-- COINS VALUE -->
-    <LinearLayout
-        android:id="@+id/coin_value_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/coin_value"
-            android:textColor="@color/purple_700"
-            android:layout_marginStart="15dp"
-            android:textSize="25sp" />
-
-        <Button
-            android:id="@+id/cv_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_marginEnd="15dp"
-            android:backgroundTint="@color/purple_700"
-            android:textColor="@color/white"
-            android:drawableEnd="@drawable/ic_baseline_attach_money_24" />
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
