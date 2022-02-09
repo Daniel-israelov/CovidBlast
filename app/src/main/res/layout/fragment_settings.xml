@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/settings_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/btn_settings"
-    android:orientation="vertical"
-    android:layout_marginStart="5dp"
-    tools:context=".SettingsFragment">
+    android:layout_below="@+id/btn_settings">
 
-    <ImageButton
-        android:id="@+id/btn_music"
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/settings_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/music_btn_selector"
-        android:backgroundTint="@color/light_blue"
-        tools:ignore="ContentDescription" />
+        android:orientation="vertical"
+        android:layout_marginStart="5dp"
+        tools:context=".SettingsFragment">
 
-    <ImageButton
-        android:id="@+id/btn_sound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/sound_btn_selector"
-        android:backgroundTint="@color/light_blue"
-        tools:ignore="ContentDescription" />
+        <ImageButton
+            android:id="@+id/btn_music"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="2.5dp"
+            android:background="@drawable/rounded_buttons"
+            android:src="@drawable/music_btn_selector"
+            android:backgroundTint="@color/light_blue"
+            tools:ignore="ContentDescription" />
 
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/btn_sound"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="2.5dp"
+            android:background="@drawable/rounded_buttons"
+            android:src="@drawable/sound_btn_selector"
+            android:backgroundTint="@color/light_blue"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+</ScrollView>

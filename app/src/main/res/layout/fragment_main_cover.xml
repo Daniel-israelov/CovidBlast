@@ -9,25 +9,33 @@
 
     <ImageButton
         android:id="@+id/btn_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="7.5dp"
+        android:layout_marginStart="7.5dp"
+        android:background="@drawable/rounded_buttons"
         android:src="@drawable/ic_baseline_settings_24"
-        android:backgroundTint="@color/light_blue" />
+        android:backgroundTint="@color/light_blue"/>
 
     <ImageButton
         android:id="@+id/btn_backgrounds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="7.5dp"
+        android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/btn_settings"
+        android:background="@drawable/rounded_buttons"
         android:src="@drawable/ic_baseline_image_24"
         android:backgroundTint="@color/light_blue"/>
 
     <ImageButton
         android:id="@+id/btn_upgrades"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="7.5dp"
+        android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/btn_backgrounds"
+        android:background="@drawable/rounded_buttons"
         android:src="@drawable/ic_baseline_upgrade_24"
         android:backgroundTint="@color/light_blue"/>
 
