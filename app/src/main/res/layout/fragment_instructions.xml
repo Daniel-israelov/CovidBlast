@@ -5,9 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
     android:layout_height="400dp"
-    android:background="@drawable/instructions_bg_rounded"
+    android:background="@drawable/instructions_bg_blue_rounded"
     android:layout_centerInParent="true"
     tools:context=".InstructionsFragment">
+
+    <TextView
+        android:id="@+id/instructions_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instruction_tv"
+        android:textSize="25sp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instructions_dodge"
+        android:textSize="25sp"
+        android:layout_marginTop="210dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/tap_close_tv"
@@ -50,16 +73,5 @@
         android:layout_above="@id/syringe_iv"
         android:layout_centerHorizontal="true"
         tools:ignore="ContentDescription" />
-
-    <TextView
-        android:id="@+id/instructions_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/instruction_tv"
-        android:textSize="25sp"
-        android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
-        android:textAlignment="center" />
 
 </RelativeLayout>
