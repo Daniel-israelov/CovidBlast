@@ -31,4 +31,5 @@
     <string name="coin_value">Coin value</string>
     <string name="upgrades">UPGRADES</string>
     <string name="not_enough_coins">Not enough coins</string>
+    <string name="instruction_tv">Drag and hold to move and shoot</string>
 </resources>

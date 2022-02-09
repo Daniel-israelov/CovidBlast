@@ -4,6 +4,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.transition.TransitionInflater;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,14 @@ public class GameOverDialog extends Fragment implements View.OnClickListener{
     Button finishBTN;
     String name, difficulty;
     int score;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TransitionInflater inflater = TransitionInflater.from(getActivity());
+        setEnterTransition(inflater.inflateTransition(R.transition.slide_up));
+        setExitTransition(inflater.inflateTransition(R.transition.slide_up));
+    }
 
     @Nullable
     @Override

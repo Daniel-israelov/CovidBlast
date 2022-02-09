@@ -17,12 +17,13 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
     final String UPGRADES_FRAGMENT_TAG = "upgrades_fragment";
     final String BACKGROUND_FRAGMENT_TAG = "background_fragment";
     final String SCORES_FRAGMENTS_TAG = "scores_fragment";
+    final String INSTRUCTIONS_TAG = "instructions_fragment";
 
     SettingsFragment settingsFragment;
     BackgroundFragment backgroundFragment;
     UpgradesFragment upgradesFragment;
     ScoreboardFragment scoreboardFragment;
-    BtnListener btnListener;
+    InstructionsFragment instructionsFragment;
 
     Button playBtn, scoresBtn, instructionsBtn;
     ImageButton settingsBtn, backgroundBtn, upgradeBtn;
@@ -33,7 +34,7 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
         upgradesFragment = new UpgradesFragment();
         backgroundFragment = new BackgroundFragment();
         scoreboardFragment = new ScoreboardFragment();
-        btnListener = new BtnListener();
+        instructionsFragment  = new InstructionsFragment();
     }
 
     @Nullable
@@ -48,31 +49,15 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
         scoresBtn = view.findViewById(R.id.btn_scores);
         instructionsBtn = view.findViewById(R.id.btn_instructions);
 
+        view.setOnClickListener(this);
         backgroundBtn.setOnClickListener(this);
         settingsBtn.setOnClickListener(this);
         upgradeBtn.setOnClickListener(this);
-        view.setOnClickListener(this);
-
-        playBtn.setOnClickListener(btnListener);
+        playBtn.setOnClickListener(this);
         scoresBtn.setOnClickListener(this);
-        instructionsBtn.setOnClickListener(btnListener);
+        instructionsBtn.setOnClickListener(this);
 
         return view;
-    }
-
-    private static class BtnListener implements View.OnClickListener{
-        @SuppressLint("NonConstantResourceId")
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.btn_play:
-                    //Do something
-                    break;
-                case R.id.btn_instructions:
-                    //Do something
-                    break;
-            }
-        }
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -92,6 +77,9 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.btn_scores:
                 manageFrags(scoreboardFragment, SCORES_FRAGMENTS_TAG);
+                break;
+            case R.id.btn_instructions:
+                manageFrags(instructionsFragment, INSTRUCTIONS_TAG);
                 break;
             default:
                 transaction.hide(settingsFragment);
