@@ -13,7 +13,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="UPGRADES"
+        android:text="@string/upgrades"
         android:layout_gravity="center"
         android:textStyle="bold"
         android:layout_marginTop="15dp"
@@ -43,7 +43,6 @@
             android:layout_weight="2"
             android:layout_marginEnd="15dp"
             android:backgroundTint="@color/red"
-            android:text="Upgrade"
             android:textColor="@color/white"
             android:drawableEnd="@drawable/ic_baseline_attach_money_24" />
     </LinearLayout>
@@ -71,7 +70,6 @@
             android:layout_weight="2"
             android:layout_marginEnd="15dp"
             android:backgroundTint="@color/light_blue"
-            android:text="Upgrade"
             android:textColor="@color/white"
             android:drawableEnd="@drawable/ic_baseline_attach_money_24" />
     </LinearLayout>
@@ -99,7 +97,6 @@
             android:layout_weight="2"
             android:layout_marginEnd="15dp"
             android:backgroundTint="@color/purple_700"
-            android:text="Upgrade"
             android:textColor="@color/white"
             android:drawableEnd="@drawable/ic_baseline_attach_money_24" />
     </LinearLayout>
