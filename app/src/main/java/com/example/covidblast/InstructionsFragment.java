@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.transition.TransitionInflater;
 
-public class InstructionsFragment extends Fragment {
+public class InstructionsFragment extends Fragment{
     ImageView syringe, hand, bloodDrop;
     Animation animation_dragging, animation_shooting;
 
@@ -40,7 +39,6 @@ public class InstructionsFragment extends Fragment {
         syringe.startAnimation(animation_dragging);
         hand.startAnimation(animation_dragging);
         bloodDrop.startAnimation(animation_shooting);
-
 
         return view;
     }

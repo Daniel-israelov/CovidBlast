@@ -102,15 +102,19 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
      * @param frag The fragment that's currently being used in the app.
      */
     private void manageFrags(Fragment frag, String TAG) {
-        for(Fragment f : getParentFragmentManager().getFragments())
-            if(!(f instanceof MainCoverFragment))
-                transaction.hide(f);
+        if (frag.isVisible()) {
+            transaction.hide(frag);
+        }
+        else
+        {
+            for (Fragment f : getParentFragmentManager().getFragments()) {
+                if (!(f instanceof MainCoverFragment))
+                    transaction.hide(f);
+            }
+            if (!frag.isAdded())
+                transaction.add(R.id.main_cover_frag, frag, TAG);
 
-        if (!frag.isAdded())
-            transaction.add(R.id.main_cover_frag, frag, TAG);
-
-        if (!frag.isVisible())
             transaction.show(frag);
+        }
     }
-
 }
