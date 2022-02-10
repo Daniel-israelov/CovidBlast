@@ -13,12 +13,10 @@ import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         player.initialize(this);
         player.setMusicOnOff(true);
-        player.setMusicOnOff(false);
 
         coinsTV = findViewById(R.id.coins_count_tv);
 
@@ -87,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         if (MainCoverFragment.GAME_STARTED) {
             switch (event.getAction()){
                 case MotionEvent.ACTION_DOWN :
-                case MotionEvent.ACTION_MOVE : {
+                case MotionEvent.ACTION_MOVE :
                     if (event.getRawX() <= 75) {
                         syringe.animate()
                                 .x(-125)
@@ -106,11 +103,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                                 .setDuration(0)
                                 .start();
                     }
-                    return true;
-                }
-                default: return true;
             }
-        }else { return true; }
+        }
+        return true;
     }
 
     @SuppressLint("SetTextI18n")

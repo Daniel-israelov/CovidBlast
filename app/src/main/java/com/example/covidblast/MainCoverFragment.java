@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import java.util.Objects;
-
 public class MainCoverFragment extends Fragment implements View.OnClickListener {
 
     public static boolean GAME_STARTED = false;
