@@ -18,4 +18,8 @@
     <string name="close_instructions">לחץ לסגירה</string>
     <string name="instructions_dodge">התחמק מהוירוסים !</string>
     <string name="back_toast">לחץ שוב כדי לצאת</string>
+    <string name="easy">קל</string>
+    <string name="medium">בינוני</string>
+    <string name="hard">קשה</string>
+    <string name="extreme">קשה מאוד</string>
 </resources>

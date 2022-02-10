@@ -35,4 +35,8 @@
     <string name="close_instructions">Tap to close</string>
     <string name="instructions_dodge">Dodge the viruses !</string>
     <string name="back_toast">Press back again to exit</string>
+    <string name="easy">EASY</string>
+    <string name="medium">MEDIUM</string>
+    <string name="hard">HARD</string>
+    <string name="extreme">EXTREME</string>
 </resources>

@@ -43,10 +43,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
 
         switch (view.getId()){
-            case R.id.btn_sound:
+            case R.id.btn_sound: //in game sound effect
                 soundBtn.setActivated(!soundBtn.isActivated());
                 break;
-            case R.id.btn_music:
+            case R.id.btn_music: //background music
                 musicBtn.setActivated(!musicBtn.isActivated());
                 MusicPlayer.getInstance().setMusicOnOff(!MusicPlayer.getInstance().getIsMusicOn());
                 break;

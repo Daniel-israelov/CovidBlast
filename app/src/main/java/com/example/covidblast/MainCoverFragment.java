@@ -14,19 +14,19 @@ import android.widget.ImageButton;
 
 public class MainCoverFragment extends Fragment implements View.OnClickListener {
 
-    public static boolean GAME_STARTED = false;
-
     final String SETTINGS_FRAGMENT_TAG = "settings_fragment";
     final String UPGRADES_FRAGMENT_TAG = "upgrades_fragment";
     final String BACKGROUND_FRAGMENT_TAG = "background_fragment";
     final String SCORES_FRAGMENTS_TAG = "scores_fragment";
     final String INSTRUCTIONS_TAG = "instructions_fragment";
+    final String DIFFICULTY_SELECTION_TAG = "difficulty_selection_fragment";
 
     SettingsFragment settingsFragment;
     BackgroundFragment backgroundFragment;
     UpgradesFragment upgradesFragment;
     ScoreboardFragment scoreboardFragment;
     InstructionsFragment instructionsFragment;
+    DifficultySelectionFragment difficultySelectionFragment;
 
     Button playBtn, scoresBtn, instructionsBtn;
     ImageButton settingsBtn, backgroundBtn, upgradeBtn;
@@ -39,6 +39,7 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
         backgroundFragment = new BackgroundFragment();
         scoreboardFragment = new ScoreboardFragment();
         instructionsFragment  = new InstructionsFragment();
+        difficultySelectionFragment = new DifficultySelectionFragment();
     }
 
     @Nullable
@@ -73,13 +74,16 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
         switch (view.getId()){
             case R.id.btn_play:
                 if (!scoreboardFragment.isVisible()) {
-                    hide_all_sub_fragments();
-                    transaction.hide(mainCoverFragment);
-                    GAME_STARTED = true;
-                    MainActivity.syringe.setVisibility(View.VISIBLE);
-                    // need to activate media-player only if settings-music-button is NOT-pressed.
-//                    if (!SettingsFragment.soundBtn.isPressed())
-                    MainActivity.player.setMusicOnOff(true);
+                 /*   hide_all_sub_fragments();
+                    transaction.hide(mainCoverFragment);*/
+                    manageFrags(difficultySelectionFragment, DIFFICULTY_SELECTION_TAG);
+                    playBtn.setVisibility(View.INVISIBLE);
+                    scoresBtn.setVisibility(View.INVISIBLE);
+                    instructionsBtn.setVisibility(View.INVISIBLE);
+                    settingsBtn.setVisibility(View.INVISIBLE);
+                    upgradeBtn.setVisibility(View.INVISIBLE);
+                    backgroundBtn.setVisibility(View.INVISIBLE);
+                    transaction.addToBackStack(null);
                 }
                 break;
             case R.id.btn_settings:

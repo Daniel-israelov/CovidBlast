@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public static int SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
     public static MusicPlayer player = MusicPlayer.getInstance();
     @SuppressLint("StaticFieldLeak")
-    public static ImageView syringe;
+    public static ImageView syringeIV;
+    Syringe syringe;
 
     final String MAIN_COVER_FRAGMENT_TAG = "main_cover_fragment";
     Toast backToast;
@@ -58,12 +59,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         rootLayout.setBackgroundResource(backgroundDrawable);
         rootLayout.setOnTouchListener(this);
 
-        syringe = findViewById(R.id.syringe_iv);
-
         player.initialize(this);
         player.setMusicOnOff(true);
 
         coinsTV = findViewById(R.id.coins_count_tv);
+        syringe = new Syringe(getResources());
+        syringeIV = findViewById(R.id.syringe_iv);
+        syringeIV.setImageBitmap(syringe.getSyringe());
 
         handleCoinsTV(coinsTV);
 
@@ -81,30 +83,17 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (MainCoverFragment.GAME_STARTED) {
+        if (DifficultySelectionFragment.GAME_STARTED)
             switch (event.getAction()){
                 case MotionEvent.ACTION_DOWN :
                 case MotionEvent.ACTION_MOVE :
-                    if (event.getRawX() <= 75) {
-                        syringe.animate()
-                                .x(-125)
-                                .setDuration(0)
-                                .start();
-                    }
-                    else if (event.getRawX() >= SCREEN_WIDTH - 75) {
-                        syringe.animate()
-                                .x(SCREEN_WIDTH - 275)
-                                .setDuration(0)
-                                .start();
-                    }
-                    else { // between
-                        syringe.animate()
-                                .x(event.getRawX() - 200)
-                                .setDuration(0)
-                                .start();
-                    }
+                    if (event.getRawX() <= 75)  //left animation
+                        syringeIV.animate().x(50).setDuration(0).start();
+                    else if (event.getRawX() >= SCREEN_WIDTH - 60) //right animation
+                        syringeIV.animate().x(SCREEN_WIDTH - 85).setDuration(0).start();
+                    else  // between
+                        syringeIV.animate().x(event.getRawX() - 25).setDuration(0).start();
             }
-        }
         return true;
     }
 
@@ -183,19 +172,31 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            backToast.cancel();
-            super.onBackPressed();
-            return;
+        if (fragmentManager.findFragmentByTag("difficulty_selection_fragment").isVisible()) {
+            transaction = fragmentManager.beginTransaction();
+            transaction.hide(fragmentManager.findFragmentByTag("difficulty_selection_fragment"));
+            mainCoverFragment.playBtn.setVisibility(View.VISIBLE);
+            mainCoverFragment.scoresBtn.setVisibility(View.VISIBLE);
+            mainCoverFragment.instructionsBtn.setVisibility(View.VISIBLE);
+            mainCoverFragment.settingsBtn.setVisibility(View.VISIBLE);
+            mainCoverFragment.upgradeBtn.setVisibility(View.VISIBLE);
+            mainCoverFragment.backgroundBtn.setVisibility(View.VISIBLE);
+            transaction.commit();
         }
+        else {
+            if (doubleBackToExitPressedOnce) {
+                backToast.cancel();
+                super.onBackPressed();
+                return;
+            }
 
-        this.doubleBackToExitPressedOnce = true;
-        backToast = Toast.makeText(this, R.string.back_toast, Toast.LENGTH_SHORT);
-        backToast.show();
+            this.doubleBackToExitPressedOnce = true;
+            backToast = Toast.makeText(this, R.string.back_toast, Toast.LENGTH_SHORT);
+            backToast.show();
 
-        new Handler(Looper.getMainLooper())
-                .postDelayed(() -> doubleBackToExitPressedOnce=false, 1500);
+            new Handler(Looper.getMainLooper())
+                    .postDelayed(() -> doubleBackToExitPressedOnce = false, 1500);
+        }
     }
-
 
 }

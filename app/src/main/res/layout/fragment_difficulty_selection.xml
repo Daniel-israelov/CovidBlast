@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/record_tv"
+    android:layout_centerHorizontal="true"
+    tools:context=".DifficultySelectionFragment">
+
+    <Button
+        android:id="@+id/btn_easy"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/light_blue"
+        android:layout_centerHorizontal="true"
+        android:text="@string/easy"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_medium"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/light_blue"
+        android:layout_centerHorizontal="true"
+        android:text="@string/medium"
+        android:layout_below="@+id/btn_easy"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_hard"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/light_blue"
+        android:layout_centerHorizontal="true"
+        android:text="@string/hard"
+        android:layout_below="@+id/btn_medium"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_extreme"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/light_blue"
+        android:layout_centerHorizontal="true"
+        android:text="@string/extreme"
+        android:layout_below="@+id/btn_hard"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+</RelativeLayout>
