@@ -21,7 +21,7 @@ public class MusicPlayer {
 
     //initialize the music
     public void initialize(Context context) {
-        mediaPlayer = MediaPlayer.create(context, R.raw.chill_lofi_song);
+        mediaPlayer = MediaPlayer.create(context, R.raw.bg_music);
         mediaPlayer.setLooping(true);
         mediaPlayer.setVolume(100, 100);
     }

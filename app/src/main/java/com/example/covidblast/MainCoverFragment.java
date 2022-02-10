@@ -12,7 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.util.Objects;
+
 public class MainCoverFragment extends Fragment implements View.OnClickListener {
+
+    public static boolean GAME_STARTED = false;
+
     final String SETTINGS_FRAGMENT_TAG = "settings_fragment";
     final String UPGRADES_FRAGMENT_TAG = "upgrades_fragment";
     final String BACKGROUND_FRAGMENT_TAG = "background_fragment";
@@ -28,6 +33,7 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
     Button playBtn, scoresBtn, instructionsBtn;
     ImageButton settingsBtn, backgroundBtn, upgradeBtn;
     FragmentTransaction transaction;
+    Fragment mainCoverFragment;
 
     MainCoverFragment(){
         settingsFragment = new SettingsFragment();
@@ -41,6 +47,7 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_cover, container, false);
+        mainCoverFragment = getParentFragmentManager().findFragmentByTag("main_cover_fragment");
 
         backgroundBtn = view.findViewById(R.id.btn_backgrounds);
         settingsBtn = view.findViewById(R.id.btn_settings);
@@ -66,6 +73,17 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
         transaction = getParentFragmentManager().beginTransaction();
 
         switch (view.getId()){
+            case R.id.btn_play:
+                if (!scoreboardFragment.isVisible()) {
+                    hide_all_sub_fragments();
+                    transaction.hide(mainCoverFragment);
+                    GAME_STARTED = true;
+                    MainActivity.syringe.setVisibility(View.VISIBLE);
+                    // need to activate media-player only if settings-music-button is NOT-pressed.
+//                    if (!SettingsFragment.soundBtn.isPressed())
+                    MainActivity.player.setMusicOnOff(true);
+                }
+                break;
             case R.id.btn_settings:
                 if (!scoreboardFragment.isVisible())
                     manageFrags(settingsFragment, SETTINGS_FRAGMENT_TAG);
@@ -102,19 +120,19 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
      * @param frag The fragment that's currently being used in the app.
      */
     private void manageFrags(Fragment frag, String TAG) {
-        if (frag.isVisible()) {
-            transaction.hide(frag);
-        }
-        else
-        {
-            for (Fragment f : getParentFragmentManager().getFragments()) {
-                if (!(f instanceof MainCoverFragment))
-                    transaction.hide(f);
-            }
-            if (!frag.isAdded())
-                transaction.add(R.id.main_cover_frag, frag, TAG);
-
+        if (frag.isVisible()) { transaction.hide(frag); }
+        else {
+            hide_all_sub_fragments();
+            if (!frag.isAdded()) { transaction.add(R.id.main_cover_frag, frag, TAG); }
             transaction.show(frag);
         }
     }
+
+    private void hide_all_sub_fragments() {
+        for (Fragment f : getParentFragmentManager().getFragments()) {
+            if (!(f instanceof MainCoverFragment))
+                transaction.hide(f);
+        }
+    }
+
 }

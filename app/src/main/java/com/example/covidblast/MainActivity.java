@@ -6,10 +6,15 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,20 +24,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
+
+    public static int SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
+    public static MusicPlayer player = MusicPlayer.getInstance();
+    @SuppressLint("StaticFieldLeak")
+    public static ImageView syringe;
+
     final String MAIN_COVER_FRAGMENT_TAG = "main_cover_fragment";
+    Toast backToast;
 
     MainCoverFragment mainCoverFragment = null;
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
-    int coinsCount;
+
     TextView coinsTV;
     SharedPreferences sp;
-    MusicPlayer player = MusicPlayer.getInstance();
-    boolean doubleBackToExitPressedOnce = false;
-    private Toast backToast;
 
-    @SuppressLint("ResourceType")
+    int coinsCount;
+    boolean doubleBackToExitPressedOnce = false;
+
+
+    @SuppressLint({"ResourceType", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +58,13 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout rootLayout = findViewById(R.id.root_container);
         int backgroundDrawable = sp.getInt("background", R.drawable.river_boat);
         rootLayout.setBackgroundResource(backgroundDrawable);
+        rootLayout.setOnTouchListener(this);
+
+        syringe = findViewById(R.id.syringe_iv);
 
         player.initialize(this);
         player.setMusicOnOff(true);
+        player.setMusicOnOff(false);
 
         coinsTV = findViewById(R.id.coins_count_tv);
 
@@ -60,6 +77,40 @@ public class MainActivity extends AppCompatActivity {
         if(!mainCoverFragment.isAdded())
             transaction.add(R.id.root_container, mainCoverFragment, MAIN_COVER_FRAGMENT_TAG);
         transaction.commit();
+    }
+
+
+    // Source - https://stackoverflow.com/questions/59021113/how-to-move-a-view-alongside-with-the-finger-movements-in-android
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (MainCoverFragment.GAME_STARTED) {
+            switch (event.getAction()){
+                case MotionEvent.ACTION_DOWN :
+                case MotionEvent.ACTION_MOVE : {
+                    if (event.getRawX() <= 75) {
+                        syringe.animate()
+                                .x(-125)
+                                .setDuration(0)
+                                .start();
+                    }
+                    else if (event.getRawX() >= SCREEN_WIDTH - 75) {
+                        syringe.animate()
+                                .x(SCREEN_WIDTH - 275)
+                                .setDuration(0)
+                                .start();
+                    }
+                    else { // between
+                        syringe.animate()
+                                .x(event.getRawX() - 200)
+                                .setDuration(0)
+                                .start();
+                    }
+                    return true;
+                }
+                default: return true;
+            }
+        }else { return true; }
     }
 
     @SuppressLint("SetTextI18n")
@@ -144,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        backToast = Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT);
+        backToast = Toast.makeText(this, R.string.back_toast, Toast.LENGTH_SHORT);
         backToast.show();
 
         new Handler(Looper.getMainLooper())

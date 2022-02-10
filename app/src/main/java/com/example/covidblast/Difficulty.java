@@ -5,7 +5,7 @@ enum Difficulties{EASY, MEDIUM, HARD, EXTREME}
 public class Difficulty {
     private Difficulties currentDifficulty;
     private int virusAmount; //max amount of viruses on screen at the same time
-    private int pointsPerCoin;
+    private int pointsForKill;
 
     public Difficulty(Difficulties currentDifficulty){
         setCurrentDifficulty(currentDifficulty);
@@ -16,8 +16,8 @@ public class Difficulty {
         return currentDifficulty;
     }
 
-    public int getPointsPerCoin(){
-        return this.pointsPerCoin;
+    public int getPointsForKill(){
+        return this.pointsForKill;
     }
 
     public void setCurrentDifficulty(Difficulties currentDifficulty) {
@@ -32,19 +32,19 @@ public class Difficulty {
         switch (getCurrentDifficulty()){
             case EASY:
                 this.virusAmount = 3;
-                this.pointsPerCoin = 1;
+                this.pointsForKill = 1;
                 break;
             case MEDIUM:
                 this.virusAmount = 4;
-                this.pointsPerCoin = 2;
+                this.pointsForKill = 2;
                 break;
             case HARD:
                 this.virusAmount = 5;
-                this.pointsPerCoin = 3;
+                this.pointsForKill = 3;
                 break;
             case EXTREME:
                 this.virusAmount = 7;
-                this.pointsPerCoin = 5;
+                this.pointsForKill = 5;
                 break;
         }
     }

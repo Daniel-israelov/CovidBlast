@@ -34,4 +34,5 @@
     <string name="instruction_tv">Hold and drag\nto move and shoot</string>
     <string name="close_instructions">Tap to close</string>
     <string name="instructions_dodge">Dodge the viruses !</string>
+    <string name="back_toast">Press back again to exit</string>
 </resources>

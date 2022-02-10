@@ -12,8 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.transition.TransitionInflater;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
-    ImageButton soundBtn;
-    ImageButton musicBtn;
+    @SuppressLint("StaticFieldLeak")
+    public static ImageButton soundBtn;
+    @SuppressLint("StaticFieldLeak")
+    public static ImageButton musicBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
