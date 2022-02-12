@@ -28,13 +28,45 @@
 
     <ImageView
         android:id="@+id/syringe_iv"
-        android:layout_width="150dp"
+        android:layout_width="14dp"
         android:layout_height="150dp"
-        android:visibility="invisible"
-        android:src="@drawable/syringe1"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:paddingBottom="15dp"
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/corona_virus_iv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/red_virus_iv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/green_virus_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/blue_virus_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
         tools:ignore="ContentDescription" />
 
 </RelativeLayout>

@@ -22,4 +22,5 @@
     <string name="medium">בינוני</string>
     <string name="hard">קשה</string>
     <string name="extreme">קשה מאוד</string>
+    <string name="insert_name_game_over">הכנס שם בבקשה</string>
 </resources>

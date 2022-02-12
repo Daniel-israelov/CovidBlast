@@ -1,6 +1,7 @@
 package com.example.covidblast;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+// TODO: add PlayMenu like Yaniv.
 
 public class DifficultySelectionFragment extends Fragment implements View.OnClickListener{
     Button easyBtn, medBtn, hardBtn, xtrBtn;
@@ -53,7 +56,10 @@ public class DifficultySelectionFragment extends Fragment implements View.OnClic
         }
 
         GAME_STARTED = true;
-        getParentFragmentManager().beginTransaction().hide(getParentFragmentManager().findFragmentByTag("main_cover_fragment")).commit();
-        MainActivity.syringeIV.setVisibility(View.VISIBLE);
+        getParentFragmentManager().beginTransaction()
+                .hide(getParentFragmentManager().findFragmentByTag("main_cover_fragment")).commit();
+        GameRunning gameRunning = new GameRunning();
+
     }
+
 }

@@ -13,10 +13,8 @@
         <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fire_power_layout.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fire_rate_layout.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fragment_background.xml" value="0.264" />
-        <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fragment_difficulty_selection.xml" value="0.1" />
-        <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fragment_game_over_dialog.xml" value="0.18803418803418803" />
-        <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fragment_instructions.xml" value="0.264" />
-        <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fragment_main_cover.xml" value="0.15172413793103448" />
+        <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fragment_game_over_dialog.xml" value="0.264" />
+        <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fragment_main_cover.xml" value="0.264" />
         <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fragment_music_setting.xml" value="0.4" />
         <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fragment_scoreboard.xml" value="0.2398989898989899" />
         <entry key="..\:/Users/Daniel/Desktop/Semester A/Android 1/Final Project/CovidBlast/app/src/main/res/layout/fragment_settings.xml" value="0.264" />
@@ -32,10 +30,12 @@
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/drawable/rounded_bg_instructions.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/drawable/rounded_buttons.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout-v31/fragment_instructions.xml" value="0.1796875" />
-        <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/activity_game.xml" value="0.1796875" />
+        <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_background.xml" value="0.16077898550724637" />
+        <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_game_over_dialog.xml" value="0.1796875" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_instructions.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_main_cover.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_main_cover.xml" value="0.22" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_scoreboard.xml" value="0.1796875" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_settings.xml" value="0.16077898550724637" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_upgrades.xml" value="0.1" />

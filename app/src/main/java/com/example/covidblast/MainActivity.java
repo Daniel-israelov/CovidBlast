@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -21,14 +23,21 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
+//public class MainActivity extends AppCompatActivity {
 
     public static int SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
+    public static int SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
     public static MusicPlayer player = MusicPlayer.getInstance();
     @SuppressLint("StaticFieldLeak")
     public static ImageView syringeIV;
-    Syringe syringe;
+    @SuppressLint("StaticFieldLeak")
+    public static ImageView v1IV, v2IV, v3IV, v4IV;
+    public static Syringe syringe;
+    public static Virus v1, v2, v3, v4;
+    private final Random random = new Random();
 
     final String MAIN_COVER_FRAGMENT_TAG = "main_cover_fragment";
     Toast backToast;
@@ -63,11 +72,17 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         player.setMusicOnOff(true);
 
         coinsTV = findViewById(R.id.coins_count_tv);
+
+        handleCoinsTV(coinsTV);
+
         syringe = new Syringe(getResources());
+        syringe.setWidth(convertDpToPx(this, 20));
+        syringe.setHeight(convertDpToPx(this, 150));
+        syringe.setY(SCREEN_HEIGHT - syringe.getHeight()); // minus syringeIV.height
         syringeIV = findViewById(R.id.syringe_iv);
         syringeIV.setImageBitmap(syringe.getSyringe());
 
-        handleCoinsTV(coinsTV);
+        handle_viruses();
 
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
@@ -83,17 +98,22 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (DifficultySelectionFragment.GAME_STARTED)
+        if (DifficultySelectionFragment.GAME_STARTED) {
             switch (event.getAction()){
                 case MotionEvent.ACTION_DOWN :
                 case MotionEvent.ACTION_MOVE :
-                    if (event.getRawX() <= 75)  //left animation
+                    if (event.getRawX() <= 75) {
                         syringeIV.animate().x(50).setDuration(0).start();
-                    else if (event.getRawX() >= SCREEN_WIDTH - 60) //right animation
+                    }
+                    else if (event.getRawX() >= SCREEN_WIDTH - 60) {
                         syringeIV.animate().x(SCREEN_WIDTH - 85).setDuration(0).start();
-                    else  // between
+                    }
+                    else { // between
                         syringeIV.animate().x(event.getRawX() - 25).setDuration(0).start();
+                    }
+                    syringe.setX(syringeIV.getX());
             }
+        }
         return true;
     }
 
@@ -148,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         player.setMusicOnOff(player.getLastMusicMode());
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void save_background() {
         ArrayList<Integer> drawables = new ArrayList<>(
                 Arrays.asList(R.drawable.river_boat, R.drawable.dark_sky, R.drawable.night_snow,
@@ -172,9 +193,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @Override
     public void onBackPressed() {
-        if (fragmentManager.findFragmentByTag("difficulty_selection_fragment").isVisible()) {
+
+        if (!DifficultySelectionFragment.GAME_STARTED &&
+                Objects.requireNonNull(fragmentManager.findFragmentByTag("difficulty_selection_fragment")).isVisible()) {
             transaction = fragmentManager.beginTransaction();
-            transaction.hide(fragmentManager.findFragmentByTag("difficulty_selection_fragment"));
+            transaction.hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("difficulty_selection_fragment")));
             mainCoverFragment.playBtn.setVisibility(View.VISIBLE);
             mainCoverFragment.scoresBtn.setVisibility(View.VISIBLE);
             mainCoverFragment.instructionsBtn.setVisibility(View.VISIBLE);
@@ -182,8 +205,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             mainCoverFragment.upgradeBtn.setVisibility(View.VISIBLE);
             mainCoverFragment.backgroundBtn.setVisibility(View.VISIBLE);
             transaction.commit();
-        }
-        else {
+        } else {
             if (doubleBackToExitPressedOnce) {
                 backToast.cancel();
                 super.onBackPressed();
@@ -195,7 +217,74 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             backToast.show();
 
             new Handler(Looper.getMainLooper())
-                    .postDelayed(() -> doubleBackToExitPressedOnce = false, 1500);
+                    .postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+        }
+    }
+
+    public static float convertDpToPx(Context context, float dp) {
+        return dp * context.getResources().getDisplayMetrics().density;
+    }
+
+    public void handle_viruses() {
+        v1 = new Virus(getResources(), 0);
+        v1.setWidth(convertDpToPx(this, 50));
+        v1.setHeight(convertDpToPx(this, 50));
+        v1IV = findViewById(R.id.corona_virus_iv);
+        v1IV.setImageBitmap(v1.getVirus());
+        set_random_starting_xy(v1, v1IV);
+
+        v2 = new Virus(getResources(), 1);
+        v2.setWidth(convertDpToPx(this, 50));
+        v2.setHeight(convertDpToPx(this, 50));
+        v2IV = findViewById(R.id.red_virus_iv);
+        v2IV.setImageBitmap(v2.getVirus());
+        set_random_starting_xy(v2, v2IV);
+
+        v3 = new Virus(getResources(), 2);
+        v3.setWidth(convertDpToPx(this, 30));
+        v3.setHeight(convertDpToPx(this, 30));
+        v3IV = findViewById(R.id.green_virus_iv);
+        v3IV.setImageBitmap(v3.getVirus());
+        set_random_starting_xy(v3, v3IV);
+
+        v4 = new Virus(getResources(), 3);
+        v4.setWidth(convertDpToPx(this, 30));
+        v4.setHeight(convertDpToPx(this, 30));
+        v4IV = findViewById(R.id.blue_virus_iv);
+        v4IV.setImageBitmap(v4.getVirus());
+        set_random_starting_xy(v4, v4IV);
+    }
+
+    public void set_random_starting_xy(Virus virus, ImageView virusIV) {
+        int rand = random.nextInt(200) + 450;
+
+        if (rand % 2 == 0) {
+            virus.setX(-virus.getWidth());
+            virusIV.setX(-virus.getWidth());
+        }
+        else {
+            virus.setX(SCREEN_WIDTH);
+            virusIV.setX(SCREEN_WIDTH);
+        }
+
+        virus.setY(rand);
+        virusIV.setY(rand);
+    }
+
+    public static void set_all_IV_visibilities(boolean bool) {
+        if (bool) {
+            syringeIV.setVisibility(View.VISIBLE);
+            v1IV.setVisibility(View.VISIBLE);
+            v2IV.setVisibility(View.VISIBLE);
+            v3IV.setVisibility(View.VISIBLE);
+            v4IV.setVisibility(View.VISIBLE);
+        }
+        else {
+            syringeIV.setVisibility(View.INVISIBLE);
+            v1IV.setVisibility(View.INVISIBLE);
+            v2IV.setVisibility(View.INVISIBLE);
+            v3IV.setVisibility(View.INVISIBLE);
+            v4IV.setVisibility(View.INVISIBLE);
         }
     }
 

@@ -39,4 +39,5 @@
     <string name="medium">MEDIUM</string>
     <string name="hard">HARD</string>
     <string name="extreme">EXTREME</string>
+    <string name="insert_name_game_over">Please insert your name</string>
 </resources>
