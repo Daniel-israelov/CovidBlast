@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 // TODO: add PlayMenu like Yaniv.
 
-public class DifficultySelectionFragment extends Fragment implements View.OnClickListener{
+public class DifficultySelectionFragment extends Fragment implements View.OnClickListener, Runnable{
     Button easyBtn, medBtn, hardBtn, xtrBtn;
     public static boolean GAME_STARTED = false;
 
@@ -56,10 +56,16 @@ public class DifficultySelectionFragment extends Fragment implements View.OnClic
         }
 
         GAME_STARTED = true;
-        getParentFragmentManager().beginTransaction()
-                .hide(getParentFragmentManager().findFragmentByTag("main_cover_fragment")).commit();
-        GameRunning gameRunning = new GameRunning();
+        MainActivity.GAME_OVER = false;
+
+        Fragment mainCoverFragment = getParentFragmentManager().findFragmentByTag("main_cover_fragment");
+        getParentFragmentManager().beginTransaction().hide(mainCoverFragment).commit();
+        GameRunning gameRunning = new GameRunning(mainCoverFragment, getParentFragmentManager());
 
     }
 
+    @Override
+    public void run() {
+
+    }
 }

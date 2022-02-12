@@ -19,29 +19,29 @@ public class Virus {
             case 0: // corona
                 hp = 10;
                 maxJump = 500;
-                xVelocity = 3;
-                yVelocity = 15;
+                xVelocity = 7;
+                yVelocity = 35;
                 virus = BitmapFactory.decodeResource(resources, R.drawable.corona_virus);
                 break;
             case 1: // red
                 hp = 10;
                 maxJump = 500;
-                xVelocity = 3;
-                yVelocity = 15;
+                xVelocity = 6;
+                yVelocity = 30;
                 virus = BitmapFactory.decodeResource(resources, R.drawable.red_virus);
                 break;
             case 2: // green
                 hp = 3;
                 maxJump = 750;
-                xVelocity = 4;
-                yVelocity = 20;
+                xVelocity = 9;
+                yVelocity = 45;
                 virus = BitmapFactory.decodeResource(resources, R.drawable.green_virus);
                 break;
             case 3: // blue
                 hp = 3;
                 maxJump = 750;
-                xVelocity = 4;
-                yVelocity = 20;
+                xVelocity = 8;
+                yVelocity = 40;
                 virus = BitmapFactory.decodeResource(resources, R.drawable.blue_virus);
                 break;
         }

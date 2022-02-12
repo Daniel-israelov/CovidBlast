@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener, Runnable {
 //public class MainActivity extends AppCompatActivity {
 
     public static int SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public static ImageView v1IV, v2IV, v3IV, v4IV;
     public static Syringe syringe;
     public static Virus v1, v2, v3, v4;
+    public static boolean GAME_OVER = false, REGISTERED = false;
     private final Random random = new Random();
 
     final String MAIN_COVER_FRAGMENT_TAG = "main_cover_fragment";
@@ -45,8 +46,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     MainCoverFragment mainCoverFragment = null;
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
+    InstructionsFragment instructionsFragment;
+    DifficultySelectionFragment difficultySelectionFragment;
 
-    TextView coinsTV;
+    GameOverDialog gameOverDialog = new GameOverDialog();
+
+    @SuppressLint("StaticFieldLeak")
+    public static TextView coinsTV, timeTV, finalScoreTv;
     SharedPreferences sp;
 
     int coinsCount;
@@ -61,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_main);
 
+        new Thread(this, "game over").start();
+        new Thread(this, "registered").start();
+        new Thread(this, "score timer").start();
+
         sp = getSharedPreferences("progress", Context.MODE_PRIVATE);
 
         RelativeLayout rootLayout = findViewById(R.id.root_container);
@@ -71,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         player.initialize(this);
         player.setMusicOnOff(true);
 
+        finalScoreTv = findViewById(R.id.final_score_tv);
+        timeTV = findViewById((R.id.score_timer_tv));
         coinsTV = findViewById(R.id.coins_count_tv);
 
         handleCoinsTV(coinsTV);
@@ -91,6 +103,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         if(!mainCoverFragment.isAdded())
             transaction.add(R.id.root_container, mainCoverFragment, MAIN_COVER_FRAGMENT_TAG);
         transaction.commit();
+
+        instructionsFragment = new InstructionsFragment();
+        difficultySelectionFragment = new DifficultySelectionFragment();
     }
 
 
@@ -115,6 +130,74 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             }
         }
         return true;
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void run() {
+        if (Thread.currentThread().getName().equals("game over")) {
+            //noinspection InfiniteLoopStatement
+            while (true) {
+                if (DifficultySelectionFragment.GAME_STARTED && GAME_OVER) {
+                    DifficultySelectionFragment.GAME_STARTED = false;
+                    GAME_OVER = false;
+                    transaction = fragmentManager.beginTransaction();
+                    if (Objects.requireNonNull(fragmentManager.findFragmentByTag("difficulty_selection_fragment")).isVisible())
+                        transaction.hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("difficulty_selection_fragment")));
+                    transaction.show(mainCoverFragment);
+                    transaction.add(R.id.main_cover_frag, gameOverDialog);
+                    transaction.commit();
+                }
+            }
+        }
+        else if (Thread.currentThread().getName().equals("registered")) {
+            //noinspection InfiniteLoopStatement
+            while (true) {
+                if (REGISTERED) {
+                    REGISTERED = false;
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            transaction = fragmentManager.beginTransaction();
+                            transaction.remove(gameOverDialog);
+                            set_all_IV_visibilities(false);
+                            set_random_starting_xy(v1, v1IV);
+                            set_random_starting_xy(v2, v2IV);
+                            set_random_starting_xy(v3, v3IV);
+                            set_random_starting_xy(v4, v4IV);
+                            mainCoverFragment.playBtn.setVisibility(View.VISIBLE);
+                            mainCoverFragment.scoresBtn.setVisibility(View.VISIBLE);
+                            mainCoverFragment.instructionsBtn.setVisibility(View.VISIBLE);
+                            mainCoverFragment.settingsBtn.setVisibility(View.VISIBLE);
+                            mainCoverFragment.upgradeBtn.setVisibility(View.VISIBLE);
+                            mainCoverFragment.backgroundBtn.setVisibility(View.VISIBLE);
+                            timeTV.setText("");
+                            transaction.commit();
+                        }
+                    });
+
+
+                }
+            }
+        }
+        else if (Thread.currentThread().getName().equals("score timer")) {
+            //noinspection InfiniteLoopStatement
+            while (true) {
+                if (DifficultySelectionFragment.GAME_STARTED && !GAME_OVER) {
+                    long currScore = calc_score_in_seconds(GameRunning.start, System.currentTimeMillis());
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() { timeTV.setText(currScore + ""); }
+
+                    });
+                }
+                sleep();
+            }
+        }
+
+        sleep();
     }
 
     @SuppressLint("SetTextI18n")
@@ -195,6 +278,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public void onBackPressed() {
 
         if (!DifficultySelectionFragment.GAME_STARTED &&
+                fragmentManager.findFragmentByTag("difficulty_selection_fragment") != null &&
                 Objects.requireNonNull(fragmentManager.findFragmentByTag("difficulty_selection_fragment")).isVisible()) {
             transaction = fragmentManager.beginTransaction();
             transaction.hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("difficulty_selection_fragment")));
@@ -204,6 +288,18 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             mainCoverFragment.settingsBtn.setVisibility(View.VISIBLE);
             mainCoverFragment.upgradeBtn.setVisibility(View.VISIBLE);
             mainCoverFragment.backgroundBtn.setVisibility(View.VISIBLE);
+            transaction.commit();
+        } else if (!DifficultySelectionFragment.GAME_STARTED &&
+                fragmentManager.findFragmentByTag("scores_fragment") != null &&
+                Objects.requireNonNull(fragmentManager.findFragmentByTag("scores_fragment")).isVisible()) {
+            transaction = fragmentManager.beginTransaction();
+            transaction.hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("scores_fragment")));
+            transaction.commit();
+        } else if (!DifficultySelectionFragment.GAME_STARTED &&
+                fragmentManager.findFragmentByTag("instructions_fragment") != null &&
+                Objects.requireNonNull(fragmentManager.findFragmentByTag("instructions_fragment")).isVisible()) {
+            transaction = fragmentManager.beginTransaction();
+            transaction.hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("instructions_fragment")));
             transaction.commit();
         } else {
             if (doubleBackToExitPressedOnce) {
@@ -280,6 +376,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             v4IV.setVisibility(View.VISIBLE);
         }
         else {
+            syringe.setX((int)(SCREEN_WIDTH/2));
+            syringeIV.setX((int)(SCREEN_WIDTH/2));
             syringeIV.setVisibility(View.INVISIBLE);
             v1IV.setVisibility(View.INVISIBLE);
             v2IV.setVisibility(View.INVISIBLE);
@@ -287,5 +385,16 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             v4IV.setVisibility(View.INVISIBLE);
         }
     }
+
+    // Set timer to sleep after each loop to make the game around 60fps.
+    private void sleep() {
+        try{
+            Thread.sleep(250);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static long calc_score_in_seconds(long start, long end) { return (end - start) / 1000; }
 
 }

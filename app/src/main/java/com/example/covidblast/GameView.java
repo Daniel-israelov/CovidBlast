@@ -124,7 +124,6 @@
 //
 //            // Check is the game is over (if syringe got hit).
 //            if(isGameOver) {
-//                // TODO: add disqualification sound.
 //                isPlaying = false;
 //                DifficultySelectionFragment.GAME_STARTED = false;
 //                // making all the viruses on the screen disappear

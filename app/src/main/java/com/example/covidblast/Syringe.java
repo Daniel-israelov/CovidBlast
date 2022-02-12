@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
 public class Syringe{
-    private float x, y;
+    private float x = (float)(MainActivity.SCREEN_WIDTH/2), y;
     private float width, height;
     private int attack, attack_speed;
     private Bitmap syringe;

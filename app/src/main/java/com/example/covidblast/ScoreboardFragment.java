@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class ScoreboardFragment extends Fragment implements View.OnClickListener{
     ArrayList<Score> scores;
     SharedPreferences sp;
-    ImageButton exitBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,9 +29,6 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scoreboard, container, false);
-
-        exitBtn = view.findViewById(R.id.exit_btn);
-        exitBtn.setOnClickListener(this);
 
         return view;
     }

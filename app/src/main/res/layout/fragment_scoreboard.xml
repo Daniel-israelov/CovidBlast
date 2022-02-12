@@ -8,19 +8,6 @@
     android:background="@drawable/scoreboard_bakcgroung"
     tools:context=".ScoreboardFragment">
 
-    <ImageButton
-        android:id="@+id/exit_btn"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@null"
-        android:scaleType="centerCrop"
-        android:src="@drawable/x_button"
-        tools:ignore="ContentDescription" />
-
     <LinearLayout
         android:id="@+id/score_table_headers"
         android:layout_width="match_parent"

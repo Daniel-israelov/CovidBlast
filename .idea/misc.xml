@@ -26,12 +26,14 @@
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1824074074074074" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/drawable/blood_drop.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1824074074074074" />
+        <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/drawable/ic_play_syringe.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/drawable/round_bg_instructions.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/drawable/rounded_bg_instructions.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/drawable/rounded_buttons.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/drawable/shape_selector_button_round.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout-v31/fragment_instructions.xml" value="0.1796875" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/activity_game.xml" value="0.1796875" />
-        <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_background.xml" value="0.16077898550724637" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_game_over_dialog.xml" value="0.1796875" />
         <entry key="..\:/Users/idan/AndroidStudioProjects/CovidBlastProject/CovidBlast/app/src/main/res/layout/fragment_instructions.xml" value="0.3333333333333333" />
