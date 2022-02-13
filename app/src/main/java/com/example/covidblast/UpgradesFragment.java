@@ -83,7 +83,6 @@ public class UpgradesFragment extends Fragment implements View.OnClickListener{
 
     @SuppressLint("SetTextI18n")
     private void validateUpgrade(Button btn, int cost){
-        System.out.println(cost);
         if(coins < cost)
             Toast.makeText(getActivity(), R.string.not_enough_coins, Toast.LENGTH_SHORT).show();
         else{

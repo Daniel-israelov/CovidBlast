@@ -81,7 +81,6 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
                     settingsBtn.setVisibility(View.INVISIBLE);
                     upgradeBtn.setVisibility(View.INVISIBLE);
                     backgroundBtn.setVisibility(View.INVISIBLE);
-                    transaction.addToBackStack(null);
                 }
                 break;
             case R.id.btn_settings:
