@@ -1,43 +1,45 @@
 package com.example.covidblast;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import java.util.List;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import java.util.ArrayList;
 
-public class ScoreAdapter extends BaseAdapter {
-    List<Score> scores;
-    private Context context;
+public class ScoreAdapter extends ArrayAdapter<Score> {
+    private final Context mContext;
+    private final int mResource;
 
-    public ScoreAdapter(List<Score> scores, Context context) {
-        this.scores = scores;
-        this.context = context;
+    public ScoreAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Score> objects, Context mContext) {
+        super(context, resource, objects);
+        this.mContext = mContext;
+        this.mResource = resource;
     }
 
+    @SuppressLint({"ViewHolder", "SetTextI18n"})
+    @NonNull
     @Override
-    public int getCount() { return scores.size(); }
-    @Override
-    public Object getItem(int i) { return scores.get(i); }
-    @Override
-    public long getItemId(int i) { return 0; }
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        if(view == null)
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_view_item, viewGroup, false);
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        String name = getItem(position).getUserName();
+        String difficulty = getItem(position).getDifficulty();
+        int score = getItem(position).getScore();
 
-        Score score = scores.get(i);
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        convertView = inflater.inflate(mResource, parent, false);
 
-        TextView nameTV = view.findViewById(R.id.item_name);
-        TextView scoreTV = view.findViewById(R.id.item_score);
-        TextView diffTV = view.findViewById(R.id.item_difficulty);
+        TextView nameTv = (TextView) convertView.findViewById(R.id.item_name);
+        TextView scoreTv = (TextView) convertView.findViewById(R.id.item_score);
+        TextView difficultyTv = (TextView) convertView.findViewById(R.id.item_difficulty);
 
-        nameTV.setText(score.getUserName());
-        scoreTV.setText(score.getScore());
-        diffTV.setText(score.getDifficulty());
+        nameTv.setText(name);
+        scoreTv.setText(score + "");
+        difficultyTv.setText(difficulty);
 
-        return view;
+        return convertView;
     }
 }

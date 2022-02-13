@@ -1,9 +1,11 @@
 package com.example.covidblast;
 
+import java.util.ArrayList;
+
 public class Score {
-    private final String userName;
-    private final String difficulty;
-    private int score;
+    static ArrayList<Score> scores = new ArrayList<>();
+    private final String userName, difficulty;
+    private final int score;
 
     public Score(String userName, String difficulty, int score) {
         this.userName = userName;
@@ -20,9 +22,4 @@ public class Score {
     public int getScore() {
         return score;
     }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
 }

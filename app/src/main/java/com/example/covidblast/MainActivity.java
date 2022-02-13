@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,13 +30,15 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public static int SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
     public static MusicPlayer player = MusicPlayer.getInstance();
     @SuppressLint("StaticFieldLeak")
-    public static ImageView syringeIV;
-    @SuppressLint("StaticFieldLeak")
-    public static ImageView v1IV, v2IV, v3IV, v4IV;
+    public static ImageView syringeIV, v1IV, v2IV, v3IV, v4IV;
     public static Syringe syringe;
     public static Virus v1, v2, v3, v4;
     public static boolean GAME_STARTED = false, GAME_OVER = false, REGISTERED = false;
     private final Random random = new Random();
+    @SuppressLint("StaticFieldLeak")
+    public static ListView listView;
+    @SuppressLint("StaticFieldLeak")
+    static ScoreAdapter scoreAdapter;
 
     final String MAIN_COVER_FRAGMENT_TAG = "main_cover_fragment";
     Toast backToast;
@@ -43,8 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     MainCoverFragment mainCoverFragment = null;
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
-    InstructionsFragment instructionsFragment;
     DifficultySelectionFragment difficultySelectionFragment;
+    ScoreboardFragment scoreboardFragment;
+    InstructionsFragment instructionsFragment;
 
     GameOverDialog gameOverDialog = new GameOverDialog();
 
@@ -82,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         timeTV = findViewById((R.id.score_timer_tv));
         coinsTV = findViewById(R.id.coins_count_tv);
 
-        // Show coins as 6K / 4M instead of 6000 / 4000000.
+        // Show coins as 6K / 4M instead of 6,000 / 4,000,000.
         handleCoinsTV(coinsTV);
 
         syringe = new Syringe(getResources());
@@ -99,10 +103,20 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         mainCoverFragment = new MainCoverFragment();
         if(!mainCoverFragment.isAdded())
-            transaction.add(R.id.root_container, mainCoverFragment, MAIN_COVER_FRAGMENT_TAG).commit();
+            transaction.add(R.id.root_container, mainCoverFragment, MAIN_COVER_FRAGMENT_TAG);
 
-        instructionsFragment = new InstructionsFragment();
         difficultySelectionFragment = new DifficultySelectionFragment();
+        scoreboardFragment = new ScoreboardFragment();
+        instructionsFragment = new InstructionsFragment();
+
+        if (!scoreboardFragment.isAdded()) {
+            transaction.add(R.id.main_cover_frag, scoreboardFragment);
+            transaction.hide(scoreboardFragment);
+        }
+
+        scoreAdapter = new ScoreAdapter(this, R.layout.list_view_item, Score.scores, this);
+
+        transaction.commit();
     }
 
 
@@ -168,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                         mainCoverFragment.upgradeBtn.setVisibility(View.VISIBLE);
                         mainCoverFragment.backgroundBtn.setVisibility(View.VISIBLE);
                         timeTV.setText("");
+
                         transaction.commit();
                     });
                 }
@@ -200,7 +215,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             coinsTV.setText(coinsCount + "");
     }
 
-    // TODO: add ScoreBoard to sp.
     @Override
     protected void onPause() {
         super.onPause();

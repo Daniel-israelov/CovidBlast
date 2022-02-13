@@ -72,10 +72,9 @@ public class GameOverDialog extends Fragment implements View.OnClickListener{
             difficulty = Difficulty.getInstance().getCurrentDifficulty() + "";
 
             Score finalScore = new Score(name, difficulty, score);
+            Score.scores.add(finalScore);
             MainActivity.REGISTERED = true;
-            getParentFragmentManager().beginTransaction().hide(this).commit();
-
-            // TODO: add finalScore to ScoreBoard.
+            getParentFragmentManager().beginTransaction().remove(this).commit();
         }
 
     }
