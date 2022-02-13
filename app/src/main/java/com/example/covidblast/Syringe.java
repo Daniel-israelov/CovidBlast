@@ -8,7 +8,6 @@ import android.graphics.Rect;
 public class Syringe{
     private float x = (float)(MainActivity.SCREEN_WIDTH/2), y;
     private float width, height;
-    private int attack, attack_speed;
     private Bitmap syringe;
 
     Syringe(Resources resources){
@@ -18,19 +17,12 @@ public class Syringe{
         syringe = Bitmap.createScaledBitmap(syringe, (int)width, (int)height, false);
     }
 
-    public float getX() { return x; }
-    public float getY() { return y; }
-    public int getAttack() { return attack; }
-    public int getAttack_speed() { return attack_speed; }
     public float getWidth() { return width; }
     public float getHeight() { return height; }
-
     public Bitmap getSyringe() { return syringe; }
 
     public void setX(float x) { this.x = x; }
     public void setY(float y) { this.y = y; }
-    public void setAttack(int attack) { this.attack = attack; }
-    public void setAttack_speed(int attack_speed) { this.attack_speed = attack_speed; }
     public void setWidth(float width) { this.width = width; }
     public void setHeight(float height) { this.height = height; }
 

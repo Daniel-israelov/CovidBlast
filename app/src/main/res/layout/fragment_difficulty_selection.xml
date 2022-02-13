@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/record_tv"
+    android:layout_below="@+id/title_tv"
+    android:layout_marginTop="50dp"
     android:layout_centerHorizontal="true"
     tools:context=".DifficultySelectionFragment">
 

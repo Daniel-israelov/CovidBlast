@@ -18,20 +18,11 @@ public class ScoreAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
-        return scores.size();
-    }
-
+    public int getCount() { return scores.size(); }
     @Override
-    public Object getItem(int i) {
-        return scores.get(i);
-    }
-
+    public Object getItem(int i) { return scores.get(i); }
     @Override
-    public long getItemId(int i) {
-        return 0;
-    }
-
+    public long getItemId(int i) { return 0; }
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view == null)

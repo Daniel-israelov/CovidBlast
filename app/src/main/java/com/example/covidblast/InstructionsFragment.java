@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.transition.TransitionInflater;
 
 public class InstructionsFragment extends Fragment{
-    ImageView syringe, hand, bloodDrop;
-    Animation animation_dragging, animation_shooting;
+    ImageView syringe, hand;
+    Animation animation_dragging;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,14 +31,11 @@ public class InstructionsFragment extends Fragment{
 
         syringe = view.findViewById(R.id.syringe_iv);
         hand = view.findViewById(R.id.hand_iv);
-        bloodDrop = view.findViewById(R.id.blood_drop_iv);
 
         animation_dragging = AnimationUtils.loadAnimation(getContext(), R.anim.drag_anim);
-        animation_shooting = AnimationUtils.loadAnimation(getContext(), R.anim.shoot_anim);
 
         syringe.startAnimation(animation_dragging);
         hand.startAnimation(animation_dragging);
-        bloodDrop.startAnimation(animation_shooting);
 
         return view;
     }

@@ -5,15 +5,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import java.util.ArrayList;
 
-public class ScoreboardFragment extends Fragment implements View.OnClickListener{
+public class ScoreboardFragment extends Fragment {
     ArrayList<Score> scores;
     SharedPreferences sp;
 
@@ -31,10 +29,5 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
         View view = inflater.inflate(R.layout.fragment_scoreboard, container, false);
 
         return view;
-    }
-
-    @Override
-    public void onClick(View view) {
-
     }
 }

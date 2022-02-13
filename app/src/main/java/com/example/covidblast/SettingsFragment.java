@@ -13,9 +13,9 @@ import androidx.transition.TransitionInflater;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
     @SuppressLint("StaticFieldLeak")
-    public static ImageButton soundBtn;
-    @SuppressLint("StaticFieldLeak")
     public static ImageButton musicBtn;
+    @SuppressLint("StaticFieldLeak")
+    public static ImageButton soundBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,11 +29,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        soundBtn = view.findViewById(R.id.btn_sound);
         musicBtn = view.findViewById(R.id.btn_music);
+        soundBtn = view.findViewById(R.id.btn_sound);
 
-        soundBtn.setOnClickListener(this);
         musicBtn.setOnClickListener(this);
+        soundBtn.setOnClickListener(this);
 
         return view;
     }
@@ -45,6 +45,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.btn_sound: //in game sound effect
                 soundBtn.setActivated(!soundBtn.isActivated());
+                GameRunning.sound = !GameRunning.sound;
                 break;
             case R.id.btn_music: //background music
                 musicBtn.setActivated(!musicBtn.isActivated());

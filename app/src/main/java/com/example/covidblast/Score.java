@@ -1,32 +1,22 @@
 package com.example.covidblast;
 
 public class Score {
-    private String userName;
-    private String difficulty;
+    private final String userName;
+    private final String difficulty;
     private int score;
 
     public Score(String userName, String difficulty, int score) {
-        setUserName(userName);
-        setDifficulty(difficulty);
-        setScore(score);
+        this.userName = userName;
+        this.difficulty = difficulty;
+        this.score = score;
     }
 
     public String getUserName() {
         return userName;
     }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getDifficulty() {
         return difficulty;
     }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
-
     public int getScore() {
         return score;
     }

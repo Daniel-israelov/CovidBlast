@@ -19,16 +19,15 @@ public class MusicPlayer {
         return instance;
     }
 
-    //initialize the music
+    //initialize the music in MainActivity.
     public void initialize(Context context) {
         mediaPlayer = MediaPlayer.create(context, R.raw.bg_music);
         mediaPlayer.setLooping(true);
         mediaPlayer.setVolume(100, 100);
     }
 
-    public boolean getIsMusicOn(){
-        return this.isMusicOn;
-    }
+    public boolean getIsMusicOn(){ return this.isMusicOn; }
+    public boolean getLastMusicMode(){ return this.lastMusicMode; }
 
     public void setMusicOnOff(boolean mode){
         isMusicOn = mode;
@@ -39,12 +38,5 @@ public class MusicPlayer {
         else
             mediaPlayer.pause();
     }
-
-    public void setLastMusicMode(boolean lastMode){
-        this.lastMusicMode = lastMode;
-    }
-
-    public boolean getLastMusicMode(){
-        return this.lastMusicMode;
-    }
+    public void setLastMusicMode(boolean lastMode){ this.lastMusicMode = lastMode; }
 }

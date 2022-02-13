@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/scoreboard_bakcgroung"
+    android:background="@drawable/scoreboard_background"
     tools:context=".ScoreboardFragment">
 
     <LinearLayout
@@ -63,7 +63,7 @@
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1" />
 
 <!--    <FrameLayout
-        android:id="@+id/fragment_containerscoretable"
+        android:id="@+id/fragment_container_score_table"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="2dp" />-->

@@ -17,22 +17,23 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
     final String SETTINGS_FRAGMENT_TAG = "settings_fragment";
     final String UPGRADES_FRAGMENT_TAG = "upgrades_fragment";
     final String BACKGROUND_FRAGMENT_TAG = "background_fragment";
+    final String DIFFICULTY_SELECTION_TAG = "difficulty_selection_fragment";
     final String SCORES_FRAGMENTS_TAG = "scores_fragment";
     final String INSTRUCTIONS_TAG = "instructions_fragment";
-    final String DIFFICULTY_SELECTION_TAG = "difficulty_selection_fragment";
 
     SettingsFragment settingsFragment;
     BackgroundFragment backgroundFragment;
     UpgradesFragment upgradesFragment;
+    DifficultySelectionFragment difficultySelectionFragment;
     ScoreboardFragment scoreboardFragment;
     InstructionsFragment instructionsFragment;
-    DifficultySelectionFragment difficultySelectionFragment;
 
     Button playBtn, scoresBtn, instructionsBtn;
     ImageButton settingsBtn, backgroundBtn, upgradeBtn;
     FragmentTransaction transaction;
-    Fragment mainCoverFragment;
+    Fragment mainCoverFragment; // this
 
+    // Constructor.
     MainCoverFragment(){
         settingsFragment = new SettingsFragment();
         upgradesFragment = new UpgradesFragment();
@@ -48,16 +49,15 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.fragment_main_cover, container, false);
         mainCoverFragment = getParentFragmentManager().findFragmentByTag("main_cover_fragment");
 
-        backgroundBtn = view.findViewById(R.id.btn_backgrounds);
         settingsBtn = view.findViewById(R.id.btn_settings);
+        backgroundBtn = view.findViewById(R.id.btn_backgrounds);
         upgradeBtn = view.findViewById(R.id.btn_upgrades);
         playBtn = view.findViewById(R.id.btn_play);
         scoresBtn = view.findViewById(R.id.btn_scores);
         instructionsBtn = view.findViewById(R.id.btn_instructions);
 
-        view.setOnClickListener(this);
-        backgroundBtn.setOnClickListener(this);
         settingsBtn.setOnClickListener(this);
+        backgroundBtn.setOnClickListener(this);
         upgradeBtn.setOnClickListener(this);
         playBtn.setOnClickListener(this);
         scoresBtn.setOnClickListener(this);
@@ -74,8 +74,6 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
         switch (view.getId()){
             case R.id.btn_play:
                 if (!scoreboardFragment.isVisible()) {
-                 /*   hide_all_sub_fragments();
-                    transaction.hide(mainCoverFragment);*/
                     manageFrags(difficultySelectionFragment, DIFFICULTY_SELECTION_TAG);
                     playBtn.setVisibility(View.INVISIBLE);
                     scoresBtn.setVisibility(View.INVISIBLE);
@@ -105,7 +103,8 @@ public class MainCoverFragment extends Fragment implements View.OnClickListener 
                     transaction.hide(instructionsFragment);
                 break;
             case R.id.btn_instructions:
-                manageFrags(instructionsFragment, INSTRUCTIONS_TAG);
+                if (!scoreboardFragment.isVisible())
+                    manageFrags(instructionsFragment, INSTRUCTIONS_TAG);
                 break;
             default:
                 transaction.hide(settingsFragment);

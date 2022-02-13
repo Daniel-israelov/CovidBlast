@@ -22,17 +22,6 @@
         android:textAlignment="center" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/instructions_dodge"
-        android:textSize="25sp"
-        android:layout_marginTop="210dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textAlignment="center" />
-
-    <TextView
         android:id="@+id/tap_close_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,14 +53,5 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@id/tap_close_tv"
         tools:ignore="ContentDescription,RtlSymmetry" />
-
-    <ImageView
-        android:id="@+id/blood_drop_iv"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:src="@drawable/blood_drop"
-        android:layout_above="@id/syringe_iv"
-        android:layout_centerHorizontal="true"
-        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

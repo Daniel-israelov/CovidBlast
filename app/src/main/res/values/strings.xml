@@ -31,13 +31,13 @@
     <string name="coin_value">Coin value</string>
     <string name="upgrades">UPGRADES</string>
     <string name="not_enough_coins">Not enough coins</string>
-    <string name="instruction_tv">Hold and drag\nto move and shoot</string>
+    <string name="instruction_tv">Hold and drag\nto evade the viruses</string>
     <string name="close_instructions">Tap to close</string>
-    <string name="instructions_dodge">Dodge the viruses !</string>
     <string name="back_toast">Press back again to exit</string>
     <string name="easy">EASY</string>
     <string name="medium">MEDIUM</string>
     <string name="hard">HARD</string>
     <string name="extreme">EXTREME</string>
     <string name="insert_name_game_over">Please insert your name</string>
+    <string name="covid_blast" translatable="false">Covid\nBlast</string>
 </resources>

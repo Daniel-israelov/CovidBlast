@@ -7,7 +7,7 @@ import android.graphics.Rect;
 
 
 public class Virus {
-    public int hp, rotation = 0;
+    public int rotation = 0;
     private float x, y;
     private float width, height;
     private int xVelocity = 3, yVelocity = 15, maxJump;
@@ -17,28 +17,24 @@ public class Virus {
 
         switch(virusType) {
             case 0: // corona
-                hp = 10;
                 maxJump = 500;
                 xVelocity = 7;
                 yVelocity = 35;
                 virus = BitmapFactory.decodeResource(resources, R.drawable.corona_virus);
                 break;
             case 1: // red
-                hp = 10;
                 maxJump = 500;
                 xVelocity = 6;
                 yVelocity = 30;
                 virus = BitmapFactory.decodeResource(resources, R.drawable.red_virus);
                 break;
             case 2: // green
-                hp = 3;
                 maxJump = 750;
                 xVelocity = 9;
                 yVelocity = 45;
                 virus = BitmapFactory.decodeResource(resources, R.drawable.green_virus);
                 break;
             case 3: // blue
-                hp = 3;
                 maxJump = 750;
                 xVelocity = 8;
                 yVelocity = 40;
@@ -50,15 +46,12 @@ public class Virus {
         virus = Bitmap.createScaledBitmap(virus, (int)width, (int)height, false);
     }
 
-    public float getX() { return x; }
-    public float getY() { return y; }
     public float getWidth() { return width; }
     public float getHeight() { return height; }
     public int getxVelocity() { return xVelocity; }
     public int getyVelocity() { return yVelocity; }
     public int getMaxJump() { return maxJump; }
     public int getRotation() { return rotation; }
-
     public Bitmap getVirus() { return virus; }
 
     public void setX(float x) { this.x = x; }

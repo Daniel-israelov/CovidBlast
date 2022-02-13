@@ -6,15 +6,13 @@ import android.graphics.Rect;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
 import android.widget.ImageView;
-
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 public class GameRunning extends Fragment implements Runnable {
 
-    public static long start, end, curr, score = 0;
+    public static long start, end;
+    public static boolean sound = true;
 
     Virus v1 = MainActivity.v1, v2 = MainActivity.v2,
             v3 = MainActivity.v3, v4 = MainActivity.v4;
@@ -28,17 +26,16 @@ public class GameRunning extends Fragment implements Runnable {
     final MediaPlayer bounce3MP = MediaPlayer.create(context, R.raw.sound_bounce);
     final MediaPlayer bounce4MP = MediaPlayer.create(context, R.raw.sound_bounce);
 
+    Thread t1 = new Thread(this, "3");
+    Thread t2 = new Thread(this, "4");
+    Thread t3 = new Thread(this, "2");
+    Thread t4 = new Thread(this, "1");
 
-    public GameRunning(Fragment mainCoverFragment, FragmentManager fragmentManager) {
+
+    public GameRunning() {
 
         MainActivity.set_all_IV_visibilities(true);
-
         start = System.currentTimeMillis();
-
-        Thread t1 = new Thread(this, "3");
-        Thread t2 = new Thread(this, "4");
-        Thread t3 = new Thread(this, "2");
-        Thread t4 = new Thread(this, "1");
 
         if (Difficulty.getInstance().getCurrentDifficulty() == Difficulties.EASY) {
             t1.start();
@@ -96,7 +93,7 @@ public class GameRunning extends Fragment implements Runnable {
         boolean falling = true, directionRight = true;
         float x, y;
 
-        while (DifficultySelectionFragment.GAME_STARTED) {
+        while (MainActivity.GAME_STARTED) {
 
             assert iv != null;
             x = iv.getX();
@@ -112,28 +109,24 @@ public class GameRunning extends Fragment implements Runnable {
             if (y < v.getMaxJump())
                 falling = true;
             else if (y + iv.getHeight() >= MainActivity.SCREEN_HEIGHT - 150) {
-                bounceMP.start();
+                if (sound)
+                    bounceMP.start();
                 falling = false;
             }
 
-
             set_xy(v, iv, x, y, falling, directionRight);
 
-
             if (isHit(v)) {
-                hitMP.start();
+                if (sound)
+                    hitMP.start();
                 end = System.currentTimeMillis();
                 MainActivity.GAME_OVER = true;
-                System.out.println("HIT!!!");
             }
-            if (!DifficultySelectionFragment.GAME_STARTED) {
+            if (MainActivity.GAME_OVER) {
                 break;
             }
-
             sleep();
-
         }
-
     }
 
     // Makes viruses bounce.
@@ -166,11 +159,11 @@ public class GameRunning extends Fragment implements Runnable {
         }
         else if (y <= 750) {
             float approachingToPeak = (float)(y / 750); // 0.8 to 1
-            if (falling) { tempYVelocity *=  approachingToPeak; }
-            else { tempYVelocity *= approachingToPeak; }
+            tempYVelocity *= approachingToPeak;
             tempXVelocity += 0.3;
         }
 
+        // Moving the viruses on the screen.
         if (falling && directionRight) { // down right x+ y+
             virus.setX(x + tempXVelocity);
             virus.setY(y + tempYVelocity);
@@ -197,13 +190,12 @@ public class GameRunning extends Fragment implements Runnable {
         }
     }
 
-    // Checks if any ball has hit the syringe.
+    // Checks if the syringe has been hit by a virus.
     public boolean isHit(Virus virus) {
         return Rect.intersects(MainActivity.syringe.getCollisionShape(), virus.getCollisionShape());
     }
 
-
-    // Set timer to sleep after each loop to make the game around 60fps.
+    // Set timer to sleep after each loop to make the game around 30fps.
     private void sleep() {
         try{
             Thread.sleep(33);
@@ -211,7 +203,4 @@ public class GameRunning extends Fragment implements Runnable {
             e.printStackTrace();
         }
     }
-
-    private long calc_score_in_seconds(long start, long end) { return (end - start) / 1000; }
-
 }
